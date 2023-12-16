@@ -1,0 +1,39 @@
+@import '~compass-mixins/lib/compass/css3';
+
+@keyframes rightBounceIn {
+    0%   { transform: translate(1000%, 0); }
+    100% { transform: translate(0%, 0); }
+}
+
+@keyframes rightBounceOut {
+    0%  { transform: translate(0%, 0); }
+    100%{ transform: translate(1000%, 0);}
+}
+
+@keyframes leftBounceIn {
+    0%   { transform: translate(-1000%, 0); }
+    100% { transform: translate(0%, 0); }
+}
+
+@keyframes leftBounceOut {
+    0%   { transform: translate(0%, 0); }
+    100% { transform: translate(-1000%, 0); }
+}
+
+.bounce-animation-base {
+    animation-duration: 0.75s;
+    animation-iteration-count: 1;
+    animation-timing-function: cubic-bezier(1, 1.1, 0, 1);
+    animation-fill-mode: forwards;
+    animation-delay: 0s;
+}
+
+.left-bounce {
+    @extend .bounce-animation-base;
+    animation-name: leftBounceIn;
+}
+
+.right-bounce {
+    @extend .bounce-animation-base;
+    animation-name: rightBounceIn;
+}

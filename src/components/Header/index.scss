@@ -1,0 +1,38 @@
+.header {
+    position: sticky;
+    top: 0;
+    left: 0;
+    max-height: 70px;
+    padding-left: 4em;
+    padding-right: 16em;
+    display: flex;
+    background-color: rgb(41, 39, 39);
+    box-shadow: 0 4px 8px 0 rgba(41, 39, 39, 0.7);
+}
+
+.logo {
+    height: 70px;
+}
+
+.nav {
+    width: 100%;
+    display: flex;
+    justify-items: flex-end;
+    flex-direction: row-reverse;
+}
+
+.nav a {
+    color: rgb(80, 136, 23);
+    font-size: 20px;
+    text-decoration: none;
+    margin: auto 1em;
+}
+
+.nav a:hover {
+    transform: scale(1.1);
+}
+
+.title {
+    color: rgb(80, 136, 23);
+    padding-left: 2em;
+}

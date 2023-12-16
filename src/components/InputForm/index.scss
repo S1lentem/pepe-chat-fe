@@ -1,0 +1,38 @@
+@import '../../styles/component.scss';
+
+.fields-container {
+    @extend .card;
+    display: flex;
+    flex-direction: column;
+    width: 25%;
+    padding-bottom: 1em;
+    margin: auto;
+}
+
+.button-container {
+    padding-top: 1em;
+}
+
+button {
+    border: solid black 0.2em;
+    border-radius: 0.5em;
+    box-shadow: #422800 4px 4px 0 0;
+    font-weight: 600px;
+    font-size: 18px;
+    text-align: center;
+    text-decoration: none;
+    transition: all .3s;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    background-color: #fbeee0;
+}
+
+button:hover {
+    background-color: #fff;
+    transform: scale(1.05);
+}
+
+button::before {
+    transition: all .3s;
+}

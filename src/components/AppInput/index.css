@@ -1,0 +1,33 @@
+.input-container {
+    display: inline-flex;
+    margin-top: 2em;
+    padding-left: 1em;
+    padding-right: 1em;
+    flex-direction: column;
+}
+
+label {
+    text-align: left;
+    vertical-align: middle;
+    color: rgb(0, 0, 0);
+    font-size: 1em;
+    padding-left: 1%;
+    font-size: 18px;
+}
+
+input {
+    height: 2em;
+    border-style: solid;
+    border-color: black;
+    border-width: 0.25em;
+    border-radius: 0.5em;
+    transition: all .3s;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}
+
+input:hover {
+    background-color: #fff;
+    transform: scale(1.01);
+}
