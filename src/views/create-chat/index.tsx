@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { AppInput } from "components/AppInput";
+import { AppInput } from "components/app-input";
 import { useNavigate } from "react-router-dom";
-import { InputFrom } from "components/InputForm";
+import { InputFrom } from "components/input-form";
 
 import './index.scss';
-import { useCreateChatMutation } from "core/api-slicer";
+import { useCreateChatMutation } from "api/api-slicer";
 
 export const CreateChatView = () => {
     const navigate = useNavigate();
