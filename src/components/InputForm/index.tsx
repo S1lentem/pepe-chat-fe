@@ -1,15 +1,15 @@
 import './index.scss';
 
 interface InputFormData {
-    fields: JSX.Element[],
     onSubmit: () => void,
     buttonText: string,
+    children: React.ReactNode,
 }
 
-export const InputFrom = (input: InputFormData) =>{
+export const InputFrom: React.FunctionComponent<InputFormData> = (input) =>{
     return (
         <div className='fields-container'>
-            {input.fields}
+            {input.children}
             <div className='button-container'>
                 <button onClick={input.onSubmit} >{input.buttonText}</button>
             </div>
