@@ -15,13 +15,6 @@ export const CreateChatView = () => {
     
     const [createChat] = useCreateChatMutation();
 
-    const fields: JSX.Element[] = [
-        <AppInput label="Title" type="text" key="title" onChange={setTitle} />,
-        <AppInput label="Descirption" type="text" key="description" onChange={setDescription}/>
-    ]
-
-    const isDisabledButton = !title && !description 
-
     const prepareRequestData = () => {
         return {title, description, userId: "509f2ffe-3ae3-4116-a17a-562d43e9dcd9"};
     }
@@ -47,7 +40,10 @@ export const CreateChatView = () => {
                     {error}
                 </div>}
             <div className="left-bounce">
-                <InputFrom fields={fields} onSubmit={submitData} buttonText="Create chat"/>
+                <InputFrom onSubmit={submitData} buttonText="Create chat">
+                    <AppInput label="Title" type="text" key="title" onChange={setTitle} />
+                    <AppInput label="Descirption" type="text" key="description" onChange={setDescription}/>
+                </InputFrom>
             </div>
         </div>
     );

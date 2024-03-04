@@ -6,7 +6,7 @@ interface AppInputProps {
     onChange: (value: string) => void;
 }
 
-export const AppInput = ({label, type, onChange} : AppInputProps) => {
+export const AppInput : React.FunctionComponent<AppInputProps> = ({label, type, onChange} : AppInputProps) => {
     return (
         <div className='input-container'>
             <label>{label}</label>

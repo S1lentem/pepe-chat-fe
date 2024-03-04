@@ -12,7 +12,7 @@ export const SignInView = () => {
     const [password, setPassword] = useState('');
     
     const [error, setError] = useState('');
-    const [isLoading, setIsLoading] = useState(false); 
+    const [, setIsLoading] = useState(false); 
 
     const onSubmit = () => {
         setIsLoading(true);
@@ -27,11 +27,6 @@ export const SignInView = () => {
         .finally(() => setIsLoading(false))     
     }
 
-    const fields : JSX.Element[] = [
-        <AppInput key="username" label="Username" type="text" onChange={setUsername} />,
-        <AppInput key="password" label="Password" type="password" onChange={setPassword} />
-    ]
-
     return (
     <div>
         <div>
@@ -42,7 +37,10 @@ export const SignInView = () => {
                 {error}
             </div>}
         <div className="left-bounce">
-            <InputFrom fields={fields} onSubmit={onSubmit} buttonText="Sign-In"/>
+            <InputFrom onSubmit={onSubmit} buttonText="Sign-In">
+                <AppInput key="username" label="Username" type="text" onChange={setUsername} />
+                <AppInput key="password" label="Password" type="password" onChange={setPassword} />
+            </InputFrom>
         </div>
     </div>
     );
