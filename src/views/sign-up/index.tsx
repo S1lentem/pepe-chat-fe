@@ -1,9 +1,9 @@
 import { useState } from "react"
-import { AppInput } from "components/AppInput"
-import { useCreateUserMutation } from "core/api-slicer";
+import { AppInput } from "components/app-input"
+import { useCreateUserMutation } from "api/api-slicer";
+import { InputFrom } from "components/input-form";
 
 import './index.scss';
-import { InputFrom } from "components/InputForm";
 
 export const SignUpView = () => {
     const [createUser] = useCreateUserMutation();

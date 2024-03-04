@@ -1,4 +1,4 @@
-import { useGetUsersQuery } from "core/api-slicer"
+import { useGetUsersQuery } from "api/api-slicer"
 
 export const HomeView = () => {
     const {data: activeUsers} = useGetUsersQuery();

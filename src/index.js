@@ -3,14 +3,15 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from 'App';
 import reportWebVitals from 'reportWebVitals';
-import { store } from 'stores/user-store';
+import { store } from 'stores/store';
 import { Provider } from 'react-redux';
 import { setupWorker } from 'msw/browser';
-import { handlers } from 'core/api-mock';
+import { handlers } from 'api/api-mock';
 
 const worker = setupWorker(...handlers);
 await worker.start(); 
 
+console.log(process.env);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

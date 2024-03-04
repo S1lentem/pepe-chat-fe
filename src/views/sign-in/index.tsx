@@ -1,11 +1,14 @@
 import { useState } from "react";
-import { AppInput } from "components/AppInput";
+import { AppInput } from "components/app-input";
 
 import './index.scss';
-import { InputFrom } from "components/InputForm";
-import { useSignInMutation } from "core/api-slicer";
+import { InputFrom } from "components/input-form";
+import { useSignInMutation } from "api/api-slicer";
+import { useNavigate } from "react-router-dom";
 
 export const SignInView = () => {
+    const navigate = useNavigate();
+
     const [signIn] = useSignInMutation();
 
     const [username, setUsername] = useState('');
@@ -17,7 +20,7 @@ export const SignInView = () => {
     const onSubmit = () => {
         setIsLoading(true);
         signIn({username, password}).then(result => {
-          console.log(result);  
+            navigate('/profile');
         })
         .catch(err => {
             if (err.response.status === 400){

@@ -1,5 +1,5 @@
 import './index.scss';
-import { useGetMessagesQuery } from 'core/api-slicer';
+import { useGetMessagesQuery } from 'api/api-slicer';
 
 export const ChatView = (chatId: string) => {  
     const {data: messages} = useGetMessagesQuery(chatId);

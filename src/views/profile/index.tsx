@@ -1,8 +1,8 @@
 import "./index.scss";
-import { Chat } from "core/models/chat";
+import { Chat } from "types/chat";
 import { useNavigate } from "react-router-dom";
 
-import { useGetFullUserByIdQuery } from "core/api-slicer";
+import { useGetFullUserByIdQuery } from "api/api-slicer";
 
 
 const renderChats = (chats: Chat[]) => {
