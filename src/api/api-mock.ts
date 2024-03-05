@@ -1,6 +1,6 @@
 import { http, HttpResponse } from 'msw';
 import { apiUrls } from 'api/api-endpoints';
-import { AuthenticationResutl, FullUser, SignInData } from 'types/user';
+import { AuthenticationResutl, FullUser } from 'types/user';
 import { Chat } from 'types/chat';
 
 export const handlers = [
@@ -9,12 +9,12 @@ export const handlers = [
             const users = [
                 {
                     id: '3bbf729a-e854-41db-a691-4fd7bf7c861d',
-                    username: 'test1',
+                    username: 'PepeChill',
                     email: 'test1@gmail.com',
                 },
                 {
                     id: '3bbf729a-e854-41db-a691-4fd7bf7c862d',
-                    username: 'test2',
+                    username: 'PepeSaid',
                     email: 'test2@gmail.com',
 
                 },
@@ -33,7 +33,7 @@ export const handlers = [
 
             const user : FullUser = {
                 id: '3bbf729a-e854-41db-a691-4fd7bf7c861d',
-                username: 'test1',
+                username: 'PepeChill',
                 email: 'test1@gmail.com',
                 activeChats: [chat],
                 createdChats: [chat],
@@ -46,8 +46,8 @@ export const handlers = [
         () => {
             const authResult: AuthenticationResutl = {
                 id: '3bbf729a-e854-41db-a691-4fd7bf7c861d',
-                username: 'test1',
-                email: 'test1@gmail.com',
+                username: 'PepeChill',
+                email: 'pepechill@gmail.com',
                 token: 'token',
             }
 
