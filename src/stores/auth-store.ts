@@ -1,7 +1,6 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { TOKEN_KEY, USER_KEY } from "constants/auth-constants";
-import { User } from "types/user";
-
+import type { AuthenticationResutl, User } from "types/user";
 import type { RootState } from "stores/store";
 
 interface AuthState {
@@ -10,11 +9,11 @@ interface AuthState {
     isAuthenticated: boolean,
 };
 
-const mapToUserDetails = (payload: any): User => {
+const mapToUserDetails = (authResult: AuthenticationResutl): User => {
     return {
-        id: payload.id,
-        email: payload.email,
-        username: payload.username,
+        id: authResult.id,
+        email: authResult.email,
+        username: authResult.username,
     };
 }
 
@@ -27,12 +26,11 @@ const initialState: AuthState = {
     isAuthenticated: !!userDetails,
 };
 
-
 export const authSlice = createSlice({
     name: 'auth',
     initialState,
     reducers: {
-        setCredentials: (state: AuthState, action) => {
+        setCredentials: (state: AuthState, action: PayloadAction<AuthenticationResutl>) => {
             state.isAuthenticated = true;
             state.token = action.payload.token;
             state.userDetails = mapToUserDetails(action.payload);

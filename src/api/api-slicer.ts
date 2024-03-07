@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import type { FullUser, User, CreateUserData, SignInData } from 'types/user';
+import type { FullUser, User, CreateUserData, SignInData, AuthenticationResutl } from 'types/user';
 import type { Chat, CreateChatData } from 'types/chat';
 import type { Message } from 'types/message';
 import { setCredentials } from 'stores/auth-store';
@@ -24,7 +24,7 @@ export const appApi = createApi({
 
 const useAuthApi = appApi.injectEndpoints({
     endpoints: (builder) => ({
-        signIn: builder.mutation<User, SignInData>({
+        signIn: builder.mutation<AuthenticationResutl, SignInData>({
             query: data => ({
                 url: 'account/sign-in',
                 method: 'POST',
