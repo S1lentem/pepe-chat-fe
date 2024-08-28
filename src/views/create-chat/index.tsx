@@ -1,19 +1,19 @@
 import { useState } from "react";
 import { AppInput } from "components/app-input";
-import { useNavigate } from "react-router-dom";
 import { InputFrom } from "components/input-form";
 
 import './index.scss';
-import { useCreateChatMutation } from "api/api-slicer";
+import { useCustomNivagate } from "hooks/use-custom-navigate";
+import { useCreateChatRequest } from "hooks/api-hooks/use-chats-api";
 
 export const CreateChatView = () => {
-    const navigate = useNavigate();
+    const navigate = useCustomNivagate();
 
     const [title, setTitle] = useState<string>('');
     const [description, setDescription] = useState<string>('');
     const [error, setError] = useState<string>('');
     
-    const [createChat] = useCreateChatMutation();
+    const createChat = useCreateChatRequest();
 
     const prepareRequestData = () => {
         return {title, description, userId: "509f2ffe-3ae3-4116-a17a-562d43e9dcd9"};

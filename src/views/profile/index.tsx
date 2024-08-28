@@ -1,11 +1,10 @@
 import "./index.scss";
 import { Chat } from "types/chat";
-import { useNavigate } from "react-router-dom";
 
-import { useGetFullUserByIdQuery } from "api/api-slicer";
+import { useCustomNivagate } from "hooks/use-custom-navigate";
+import { useGetFullUserQuery } from "hooks/api-hooks/use-users-api";
 
-
-const renderChats = (chats: Chat[]) => {
+const renderChats = (chats: Chat[], navigate: (to: string) => void) => {
     if (chats.length === 0){
         return (
             <div>
@@ -17,16 +16,19 @@ const renderChats = (chats: Chat[]) => {
     return ( 
         <ul className="chat-list">
             {
-                chats.map(chat => <li key={chat.id} className="chat-list-item">{chat.title}</li>)
+                chats.map(chat => 
+                <li key={chat.id} 
+                    className="chat-list-item"
+                    onClick={_ => navigate(`/chat/${chat.id}`)}>{chat.title}
+                </li>)
             }
         </ul>  
     );
 }
 
 export const ProfileView = () => {
-    const navigate = useNavigate();
-    const { data: user, error, isLoading } = useGetFullUserByIdQuery('3a304152-b273-410d-36cb-08dc1d89eac5');
-    
+    const navigate = useCustomNivagate();
+    const user = useGetFullUserQuery('3a304152-b273-410d-36cb-08dc1d89eac5');
     return (
         <div className="page-container">
             {
@@ -43,12 +45,12 @@ export const ProfileView = () => {
                         <div className="chats-info right-bounce">
                             <div className="active-chats">
                                 <h1>Active chats:</h1>
-                                {renderChats(user!.activeChats)}
+                                {renderChats(user!.activeChats, navigate)}
                             </div>
                             <hr/>
                             <div className="created-chats">
                                 <h1>Created chats:</h1>
-                                {renderChats(user!.createdChats)}
+                                {renderChats(user!.createdChats, navigate)}
                             </div>
                             <hr />
                             <div>

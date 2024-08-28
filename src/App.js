@@ -1,30 +1,28 @@
 import './App.css';
-import { SignUpView } from 'views/sign-up';
-import { SignInView } from 'views/sign-in';
 import { Header } from 'components/header';
 import { Footer } from 'components/footer';
-import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
-import { HomeView } from 'views/home';
-import { ProfileView } from 'views/profile';
-import { CreateChatView } from 'views/create-chat';
-import { SignOut } from 'views/sign-out';
+import { BrowserRouter } from 'react-router-dom';
+import { AnimatedNavigation } from 'components/animated-navigation';
+import { Routers } from 'route/route';
+import { ActiveQueries } from 'components/active-queries';
+import { ActiveSubmites } from 'components/active-submits';
 
 function App() {
   return (
     <div className="App">
-      <BrowserRouter>
-        <Header />
-        <Routes>
-          <Route path='/' element={<Navigate to='home'/> } />
-          <Route path='home' element={<HomeView />} />
-          <Route path='signup' element={<SignUpView/>} />
-          <Route path='signin' element={<SignInView />} />
-          <Route path='profile' element={<ProfileView />} />
-          <Route path='create-chat' element={<CreateChatView />} />
-          <Route path='signout' element={<SignOut />}/>
-        </Routes>
-        <Footer />
-      </BrowserRouter>
+      <AnimatedNavigation>
+        <ActiveSubmites>
+          <ActiveQueries>
+            <BrowserRouter>
+              <Header />
+              <div className='content'>
+                <Routers />
+              </div>
+              <Footer />
+            </BrowserRouter>
+          </ActiveQueries>
+        </ActiveSubmites>
+      </AnimatedNavigation>
     </div>
   );
 }

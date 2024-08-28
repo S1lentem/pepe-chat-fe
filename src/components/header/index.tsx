@@ -2,9 +2,12 @@ import { NavLink } from 'react-router-dom'
 import './index.scss';
 import { useSelector } from 'react-redux';
 import { selectIsAuthenticated, selectAuthUser } from 'stores/auth-store';
+import { useCustomNivagate } from 'hooks/use-custom-navigate';
 
 export const Header = () => 
 {
+    const navigate = useCustomNivagate();
+
     const isAuthenticated = useSelector(selectIsAuthenticated);
     const user = useSelector(selectAuthUser);
 
@@ -19,7 +22,7 @@ export const Header = () =>
                     <h2 className='title'>{`Hi! ${user.username}`}</h2>
                 </div>
             )}
-            <nav className="nav">
+            <nav className="nav">   
                 <ul>
                     <li>
                         <NavLink to='home'>Home</NavLink>

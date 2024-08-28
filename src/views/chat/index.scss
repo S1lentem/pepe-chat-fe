@@ -1,0 +1,21 @@
+.container {
+    width: 60%;
+    margin: 1% auto;
+    display: flex;
+}
+
+.chat-container {
+    @extend .container;
+    flex-direction: column-reverse;
+    height: 100%;
+    margin: 1% auto 50% auto; 
+}
+
+.title-container {
+    @extend .container;
+}
+
+.input-container {
+    @extend .container;
+    flex-direction: row;
+}

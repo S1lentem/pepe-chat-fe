@@ -1,12 +1,12 @@
-import { useState } from "react"
-import { AppInput } from "components/app-input"
-import { useCreateUserMutation } from "api/api-slicer";
+import { useState } from "react";
+import { AppInput } from "components/app-input";
 import { InputFrom } from "components/input-form";
 
 import './index.scss';
+import { useSignUpRequest } from "hooks/api-hooks/use-users-api";
 
 export const SignUpView = () => {
-    const [createUser] = useCreateUserMutation();
+    const createUser = useSignUpRequest();
 
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
@@ -49,4 +49,8 @@ export const SignUpView = () => {
             </div>
         </div>
     )
+}
+
+function useCreateUserRequest() {
+    throw new Error("Function not implemented.");
 }
