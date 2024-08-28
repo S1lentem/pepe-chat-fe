@@ -1,7 +1,7 @@
-import { useGetUsersQuery } from "api/api-slicer"
+import { useGetUsersRequest } from "hooks/api-hooks/use-users-api";
 
 export const HomeView = () => {
-    const {data: activeUsers} = useGetUsersQuery();
+    const activeUsers = useGetUsersRequest();
 
     return (
         <div className="home-container">

@@ -3,13 +3,12 @@ import { AppInput } from "components/app-input";
 
 import './index.scss';
 import { InputFrom } from "components/input-form";
-import { useSignInMutation } from "api/api-slicer";
-import { useNavigate } from "react-router-dom";
+import { useCustomNivagate } from "hooks/use-custom-navigate";
+import { useSignInRequest } from "hooks/api-hooks/use-users-api";
 
 export const SignInView = () => {
-    const navigate = useNavigate();
-
-    const [signIn] = useSignInMutation();
+    const navigate = useCustomNivagate();
+    const signIn = useSignInRequest()
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -19,7 +18,7 @@ export const SignInView = () => {
 
     const onSubmit = () => {
         setIsLoading(true);
-        signIn({username, password}).then(result => {
+        signIn({username, password}).then(_ => {
             navigate('/profile');
         })
         .catch(err => {

@@ -1,4 +1,4 @@
-export const apiUrls = {
+export const API_URLS = {
     baseUrl: 'https://localhost:7181/api/',
     endpoints: {
         users: {
@@ -12,6 +12,9 @@ export const apiUrls = {
             },
         },
         chat: {
+            get: {
+                byId: 'chats/:id',
+            },
             post: {
                 create: 'chats/create',
             }
@@ -21,5 +24,24 @@ export const apiUrls = {
                 byChatId: 'messages/:id', 
             },
         },
-    },
+    },    
+}
+
+export const apiUrl = (
+    selector: (api: typeof API_URLS) => string, 
+    data?: any
+) => {
+    const pattern = selector(API_URLS);
+
+    if (!data){
+        return pattern;
+    }
+
+    return pattern.split('/').map(item => {
+        if (!item.startsWith(':')){
+            return item;
+        }
+        
+        return data[item.substring(1, item.length)];
+    }).join('/')
 }
