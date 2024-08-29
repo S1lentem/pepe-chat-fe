@@ -1,18 +1,6 @@
-@import 'animations.scss';
-
 .card {
     border: solid black 0.2em;
     border-radius: 0.5em;
     background-color: rgb(146, 146, 146);
     box-shadow: 0 4px 8px 0 rgba(41, 39, 39, 0.7);
-}
-
-.left-bounce-card {
-    @extend .card;
-    @extend .left-bounce;
-}
-
-.right-bounce-card {
-    @extend .card;
-    @extend .right-bounce;
 }

@@ -3,6 +3,7 @@ import { Chat } from "types/chat";
 
 import { useCustomNivagate } from "hooks/use-custom-navigate";
 import { useGetFullUserQuery } from "hooks/api-hooks/use-users-api";
+import { AnimatedContainer } from "components/animated-container";
 
 const renderChats = (chats: Chat[], navigate: (to: string) => void) => {
     if (chats.length === 0){
@@ -34,15 +35,15 @@ export const ProfileView = () => {
             {
                 user ? (
                     <div className="profile-container">
-                        <div className="personal-info left-bounce">
+                        <AnimatedContainer className="personal-info">
                             <h2>Username: </h2>
                             <p>{user!.username}</p>
                             <hr />
                             <h2>Email: </h2>
                             <p>{user!.email}</p>
                             <hr />
-                        </div>
-                        <div className="chats-info right-bounce">
+                        </AnimatedContainer>
+                        <AnimatedContainer className="chats-info" direction='right'>
                             <div className="active-chats">
                                 <h1>Active chats:</h1>
                                 {renderChats(user!.activeChats, navigate)}
@@ -56,7 +57,7 @@ export const ProfileView = () => {
                             <div>
                                 <button onClick={e => navigate("/create-chat")}>Create Chat</button>
                             </div>
-                        </div>
+                        </AnimatedContainer>
                     </div>
                 ) : (
                     <div>

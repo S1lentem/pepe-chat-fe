@@ -2,7 +2,6 @@
 import dayjs from 'modules/dayjs';
 import './index.scss';
 
-
 interface MessageData {
     message: string;
     dateCreated: Date;

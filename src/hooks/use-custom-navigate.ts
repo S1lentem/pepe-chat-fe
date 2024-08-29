@@ -1,12 +1,31 @@
 import { useNavigate } from "react-router-dom";
-import { useNavigationContext } from "./use-contexts";
+import { useMountedRefsContext } from "./use-contexts";
+
+const IN_ANIMATION_CLASSES = ['left-bounce', 'right-bounce'];
+const OUT_ANIMATION_CLASSES = ['left-bounce-out', 'right-bounce-out'];
 
 export const useCustomNivagate = () => {
-    const { addNextLocation } = useNavigationContext();
     const navigate = useNavigate();
+    const mountedRefs = useMountedRefsContext();
 
     return (location: string) => {
-        addNextLocation(location);
-        navigate(location);
+        if (!mountedRefs.refs.length){
+            navigate(location);
+        }
+
+        const activeAnimations: Promise<any>[] = [];
+
+        mountedRefs.refs.forEach(item => {
+            if (item.ref.current){
+                item.ref.current.classList.remove(...IN_ANIMATION_CLASSES);
+                item.ref.current.classList.add(OUT_ANIMATION_CLASSES[0]);
+
+                activeAnimations.push(...item.ref.current.getAnimations().map(a => a.finished));
+            }
+        })
+
+        Promise.all(activeAnimations).then(() => {
+            navigate(location)
+        });
     }
 }

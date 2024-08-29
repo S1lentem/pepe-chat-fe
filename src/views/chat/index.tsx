@@ -5,6 +5,7 @@ import { MessageContainer } from 'components/message';
 import { useParams } from 'react-router-dom';
 import { useGetMessagesByChatIdQuery } from 'hooks/api-hooks/use-messages-api';
 import { useGetChatByIdQuery } from 'hooks/api-hooks/use-chats-api';
+import { AnimatedContainer } from 'components/animated-container';
 
 export const ChatView = () => {  
     const { chatId } = useParams();
@@ -14,11 +15,11 @@ export const ChatView = () => {
 
     return (
         <>
-            <div className='left-bounce-card title-container'>
+            <AnimatedContainer className='title-container card'>
                 <h1>{chat?.title}</h1>
                 <p>{chat?.descirption}</p>
-            </div>
-            <div className='right-bounce-card chat-container'>
+            </AnimatedContainer>
+            <AnimatedContainer className='chat-container card'>
                 { messages ? (
                     messages.map(x => (
                         <MessageContainer 
@@ -33,11 +34,11 @@ export const ChatView = () => {
                         Empty
                     </div>
                 )}
-            </div>
-            <div className='left-bounce-card input-container'>
+            </AnimatedContainer>
+            <AnimatedContainer className='input-container card'>
                 <textarea></textarea>
                 <button>Send</button>
-            </div>
+            </AnimatedContainer>
         </>
     );
 }

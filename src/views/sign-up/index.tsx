@@ -4,6 +4,7 @@ import { InputFrom } from "components/input-form";
 
 import './index.scss';
 import { useSignUpRequest } from "hooks/api-hooks/use-users-api";
+import { AnimatedContainer } from "components/animated-container";
 
 export const SignUpView = () => {
     const createUser = useSignUpRequest();
@@ -39,14 +40,14 @@ export const SignUpView = () => {
                     {error}
                 </div>
             }
-            <div className="sign-up-view left-bounce">
+            <AnimatedContainer className='sign-up-view'>
                 <InputFrom onSubmit={onSubmit} buttonText="Sign-Up">
                     <AppInput key='username' label="Username" type="text" onChange={setUsername}/>
                     <AppInput key='email' label="Email" type="text" onChange={setEmail}/>
                     <AppInput key='password' label="Password" type="password" onChange={setPassword}/>
                     <AppInput key='confirm-password' label="Confirm password" type="password" onChange={setConfirmPassword}/>
                 </InputFrom>
-            </div>
+            </AnimatedContainer>
         </div>
     )
 }

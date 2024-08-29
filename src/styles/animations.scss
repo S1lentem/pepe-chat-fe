@@ -23,7 +23,7 @@
 .bounce-animation-base {
     animation-duration: 0.75s;
     animation-iteration-count: 1;
-    animation-timing-function: cubic-bezier(1.25, 1.1, 0, 1);
+    animation-timing-function: cubic-bezier(1.5, 1.1, 1, 0);
     animation-fill-mode: forwards;
     animation-delay: 0s;
 }
@@ -33,7 +33,17 @@
     animation-name: leftBounceIn;
 }
 
+.left-bounce-out {
+    @extend .bounce-animation-base;
+    animation-name: leftBounceOut
+}
+
 .right-bounce {
     @extend .bounce-animation-base;
     animation-name: rightBounceIn;
+}
+
+.right-bounce-out {
+    @extend .bounce-animation-base;
+    animation-name: rightBounceOut;
 }

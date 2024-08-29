@@ -3,6 +3,8 @@ import './index.scss';
 import { useSelector } from 'react-redux';
 import { selectIsAuthenticated, selectAuthUser } from 'stores/auth-store';
 import { useCustomNivagate } from 'hooks/use-custom-navigate';
+import { MouseEvent } from 'react';
+import { NavigationLink } from 'components/navigation-link';
 
 export const Header = () => 
 {
@@ -10,6 +12,11 @@ export const Header = () =>
 
     const isAuthenticated = useSelector(selectIsAuthenticated);
     const user = useSelector(selectAuthUser);
+
+    const navigateTo = (location: string, e: MouseEvent<HTMLAnchorElement>) => {
+        e.preventDefault();
+        navigate(location)
+    }
 
     return (
         <header className="header">
@@ -25,16 +32,16 @@ export const Header = () =>
             <nav className="nav">   
                 <ul>
                     <li>
-                        <NavLink to='home'>Home</NavLink>
+                        <NavigationLink to='home'>Home</NavigationLink>
                         {isAuthenticated ? (
                             <>
-                                <NavLink to='profile'>Profile</NavLink>
-                                <NavLink to='signout'>SignOut</NavLink>
+                                <NavigationLink to='profile'>Profile</NavigationLink>
+                                <NavigationLink to='signout'>SignOut</NavigationLink>
                             </>
                         ) : (
                             <>
-                                <NavLink to='signin'>SignIn</NavLink>
-                                <NavLink to='signup'>SignUp</NavLink> 
+                                <NavigationLink to='signin'>SignIn</NavigationLink>
+                                <NavigationLink to='signup'>SignUp</NavigationLink> 
                             </>
                         )}
                     </li>

@@ -1,5 +1,6 @@
 import { ActiveQueryContext } from "context/active-query-context"
 import { ActiveSubmitContext } from "context/active-submit-context";
+import { MountedRefsContext } from "context/mounted-refs-context";
 import { NavigationContext } from "context/navigation-context";
 import { useContext } from "react";
 
@@ -29,4 +30,14 @@ export const useNavigationContext = (): NavigationContext => {
     }
 
     return navigationContext;
+}
+
+export const useMountedRefsContext = (): MountedRefsContext => {
+    const mountedRefsContext = useContext(MountedRefsContext);
+
+    if (!mountedRefsContext){
+        throw new Error('useMountedRefsContext ust be used within a MountedRefs component');
+    }
+
+    return mountedRefsContext;
 }

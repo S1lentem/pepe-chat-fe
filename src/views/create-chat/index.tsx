@@ -5,6 +5,7 @@ import { InputFrom } from "components/input-form";
 import './index.scss';
 import { useCustomNivagate } from "hooks/use-custom-navigate";
 import { useCreateChatRequest } from "hooks/api-hooks/use-chats-api";
+import { AnimatedContainer } from "components/animated-container";
 
 export const CreateChatView = () => {
     const navigate = useCustomNivagate();
@@ -39,12 +40,12 @@ export const CreateChatView = () => {
                 <div className="error-desc">
                     {error}
                 </div>}
-            <div className="left-bounce">
+            <AnimatedContainer className="left-bounce">
                 <InputFrom onSubmit={submitData} buttonText="Create chat">
                     <AppInput label="Title" type="text" key="title" onChange={setTitle} />
                     <AppInput label="Descirption" type="text" key="description" onChange={setDescription}/>
                 </InputFrom>
-            </div>
+            </AnimatedContainer>
         </div>
     );
 }
