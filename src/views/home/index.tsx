@@ -1,10 +1,11 @@
+import { AnimatedContainer } from "components/animated-container";
 import { useGetUsersRequest } from "hooks/api-hooks/use-users-api";
 
 export const HomeView = () => {
     const activeUsers = useGetUsersRequest();
 
     return (
-        <div className="home-container">
+        <AnimatedContainer className="home-container">
             <h1>Welcome to the PepeChat</h1>
             <h3>Active users:   </h3>
             { activeUsers ? (
@@ -24,6 +25,6 @@ export const HomeView = () => {
             )
                 
             }
-        </div>
+        </AnimatedContainer>
     );
 }

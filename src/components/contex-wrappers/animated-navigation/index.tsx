@@ -24,7 +24,6 @@ export const AnimatedNavigation = (props: PropsWithChildren) => {
     useEffect(() => {
         if (nextLocation){
             const locationData = ROUTES.find(x => matchPath(x, nextLocation.path));
-            console.log(locationData);
         }
     }, [nextLocation]);
 

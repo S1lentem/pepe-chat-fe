@@ -1,31 +1,28 @@
 import { MountedRefsContext, RefItem } from "context/mounted-refs-context";
-import { PropsWithChildren, RefObject, useEffect, useState } from "react";
+import { PropsWithChildren, RefObject, useRef } from "react";
 
 export const MountedRefs = (props: PropsWithChildren) => {
-    const [refs, setRefs] = useState<RefItem[]>([]);
+    const refList = useRef<RefItem[]>([]);
 
     const push = (id: string, ref: RefObject<HTMLElement>) => {
-        setRefs([...refs, { id, ref }]);
+        refList.current.push({ id, ref });
     }
 
     const remove = (id: string) => {
-        setRefs(items => items.filter(item => item.id !== id));
+        refList.current = refList.current.filter((item) => item.id !== id)
     }
 
     const clear = () => {
-        setRefs([]);
+        refList.current = []
     }
 
     const value = {
-        refs,
+        refList,
         push,
         remove,
         clear
     }
 
-    useEffect(() => {
-        console.log(refs);
-    }, [refs])
 
     return (<MountedRefsContext.Provider value={value}>
         {props.children}

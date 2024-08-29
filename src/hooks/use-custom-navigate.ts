@@ -9,13 +9,15 @@ export const useCustomNivagate = () => {
     const mountedRefs = useMountedRefsContext();
 
     return (location: string) => {
-        if (!mountedRefs.refs.length){
+        const refList = mountedRefs.refList.current;
+        
+        if (!refList.length){
             navigate(location);
         }
 
         const activeAnimations: Promise<any>[] = [];
 
-        mountedRefs.refs.forEach(item => {
+        refList.forEach(item => {
             if (item.ref.current){
                 item.ref.current.classList.remove(...IN_ANIMATION_CLASSES);
                 item.ref.current.classList.add(OUT_ANIMATION_CLASSES[0]);

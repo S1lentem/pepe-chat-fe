@@ -35,7 +35,7 @@ export const ProfileView = () => {
             {
                 user ? (
                     <div className="profile-container">
-                        <AnimatedContainer className="personal-info">
+                        <AnimatedContainer className='personal-info'>
                             <h2>Username: </h2>
                             <p>{user!.username}</p>
                             <hr />

@@ -15,7 +15,10 @@ export const AnimatedContainer = (props: AnimatedContainerProps) => {
         const id = uuidv4();
         ref.current?.classList.add(`${props.direction ?? 'left'}-bounce`);
         mountedRefContext.push(id, ref);
-        return () => mountedRefContext.remove(id);
+
+        return () => {
+            mountedRefContext.remove(id);
+        }
     }, [])
 
     return (

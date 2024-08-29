@@ -1,4 +1,4 @@
-import { RefObject, createContext } from "react";
+import { MutableRefObject, RefObject, createContext } from "react";
 
 export interface RefItem {
     id: string;
@@ -6,7 +6,7 @@ export interface RefItem {
 }
 
 export interface MountedRefsContext {
-    refs: RefItem[],
+    refList: MutableRefObject<RefItem[]>,
     push: (id: string, ref: RefObject<HTMLElement>) => void;
     remove: (id: string) => void;
     clear: () => void;

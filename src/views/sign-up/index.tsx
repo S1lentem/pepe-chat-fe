@@ -14,32 +14,21 @@ export const SignUpView = () => {
     const [password, setPassword] = useState('');
     
     const [confirmPassword, setConfirmPassword] = useState('');
-    const [error, setError] = useState('');
 
     const onSubmit = () => {
         if (password !== confirmPassword){
             alert('passwords not equal')
         } else {
             createUser({username, email, password})
-                .then(result => console.log(result))
-                .catch(err => {
-                    if (err.response.status === 400){
-                        setError(err.response.data);
-                    }
-                })
+                .then(result => {});
         }
     }
 
     return (
         <div>
-            <div>
+            <AnimatedContainer>
                 <h1>Sign-Up Page</h1>
-            </div>
-            {error && 
-                <div>
-                    {error}
-                </div>
-            }
+            </AnimatedContainer>
             <AnimatedContainer className='sign-up-view'>
                 <InputFrom onSubmit={onSubmit} buttonText="Sign-Up">
                     <AppInput key='username' label="Username" type="text" onChange={setUsername}/>
@@ -50,8 +39,4 @@ export const SignUpView = () => {
             </AnimatedContainer>
         </div>
     )
-}
-
-function useCreateUserRequest() {
-    throw new Error("Function not implemented.");
 }
