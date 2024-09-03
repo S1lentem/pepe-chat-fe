@@ -18,11 +18,17 @@ export const useCustomNivagate = () => {
         const activeAnimations: Promise<any>[] = [];
 
         refList.forEach(item => {
-            if (item.ref.current){
-                item.ref.current.classList.remove(...IN_ANIMATION_CLASSES);
-                item.ref.current.classList.add(OUT_ANIMATION_CLASSES[0]);
+            const element = item.ref.current;
 
-                activeAnimations.push(...item.ref.current.getAnimations().map(a => a.finished));
+            if (element){
+                const currentAnimationClassName = Array.from(element.classList.values())
+                    .find(c => IN_ANIMATION_CLASSES.includes(c))!;
+                element.classList.remove(currentAnimationClassName);
+
+                const newAnimationClassName = OUT_ANIMATION_CLASSES.find(x => x.startsWith(currentAnimationClassName))!;
+                element.classList.add(newAnimationClassName);
+
+                activeAnimations.push(...element.getAnimations().map(a => a.finished));
             }
         })
 
