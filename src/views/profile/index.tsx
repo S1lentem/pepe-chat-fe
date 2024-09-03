@@ -29,42 +29,43 @@ const renderChats = (chats: Chat[], navigate: (to: string) => void) => {
 
 export const ProfileView = () => {
     const navigate = useCustomNivagate();
-    const user = useGetFullUserQuery('3a304152-b273-410d-36cb-08dc1d89eac5');
+    const { result: user, queryId } = useGetFullUserQuery('3a304152-b273-410d-36cb-08dc1d89eac5');
     return (
         <div className="page-container">
-            {
-                user ? (
-                    <div className="profile-container">
-                        <AnimatedContainer className='personal-info'>
-                            <h2>Username: </h2>
-                            <p>{user!.username}</p>
-                            <hr />
-                            <h2>Email: </h2>
-                            <p>{user!.email}</p>
-                            <hr />
-                        </AnimatedContainer>
-                        <AnimatedContainer className="chats-info" direction='right'>
-                            <div className="active-chats">
-                                <h1>Active chats:</h1>
-                                {renderChats(user!.activeChats, navigate)}
-                            </div>
-                            <hr/>
-                            <div className="created-chats">
-                                <h1>Created chats:</h1>
-                                {renderChats(user!.createdChats, navigate)}
-                            </div>
-                            <hr />
-                            <div>
-                                <button onClick={e => navigate("/create-chat")}>Create Chat</button>
-                            </div>
-                        </AnimatedContainer>
-                    </div>
-                ) : (
-                    <div>
-                    
-                    </div>
-                )
-            }
+            {user && (
+                <div className="profile-container">
+                    <AnimatedContainer 
+                        className='personal-info'
+                        queryIds={[queryId]} 
+                    >
+                        <h2>Username: </h2>
+                        <p>{user.username}</p>
+                        <hr />
+                        <h2>Email: </h2>
+                        <p>{user.email}</p>
+                        <hr />
+                    </AnimatedContainer>
+                    <AnimatedContainer 
+                        className="chats-info" 
+                        direction='right'
+                        queryIds={[queryId]}
+                    >
+                        <div className="active-chats">
+                            <h1>Active chats:</h1>
+                            {renderChats(user!.activeChats, navigate)}
+                        </div>
+                        <hr/>
+                        <div className="created-chats">
+                            <h1>Created chats:</h1>
+                            {renderChats(user!.createdChats, navigate)}
+                        </div>
+                        <hr />
+                        <div>
+                            <button onClick={e => navigate("/create-chat")}>Create Chat</button>
+                        </div>
+                    </AnimatedContainer>
+                </div>
+            )}
         </div>
     )
 }

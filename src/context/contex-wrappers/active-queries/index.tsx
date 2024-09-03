@@ -18,12 +18,17 @@ export const ActiveQueries = (props: PropsWithChildren) => {
             setIsAllCompleted(true);
         }
     }
+
+    const isCompleted = (...ids: string[]) => {
+        return ids.every(item => !requestIds.includes(item));
+    }
     
     const value = {
         requestIds,
         isAllCompleted,
         push,
         complete,
+        isCompleted
     };
 
     return <ActiveQueryContext.Provider value={value}>

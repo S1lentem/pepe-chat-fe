@@ -10,18 +10,24 @@ import { AnimatedContainer } from 'components/animated-container';
 export const ChatView = () => {  
     const { chatId } = useParams();
 
-    const messages = useGetMessagesByChatIdQuery(chatId!);
-    const chat = useGetChatByIdQuery(chatId!);
+    const { result: messages, queryId: messagesQueryId } = useGetMessagesByChatIdQuery(chatId!);
+    const { result: chat, queryId: chatQueryId } = useGetChatByIdQuery(chatId!);
 
     return (
         <>
-            <AnimatedContainer className='title-container card'>
+            <AnimatedContainer 
+                className='title-container card'
+                queryIds={[chatQueryId]}
+            >
                 <h1>{chat?.title}</h1>
                 <p>{chat?.descirption}</p>
             </AnimatedContainer>
-            <AnimatedContainer className='chat-container card'>
-                { messages ? (
-                    messages.map(x => (
+            <AnimatedContainer 
+                className='chat-container card'
+                queryIds={[messagesQueryId]}
+            >
+                {   
+                    messages && messages.map(x => (
                         <MessageContainer 
                         key={x.id}
                         dateCreated={x.dateAdded}
@@ -29,11 +35,7 @@ export const ChatView = () => {
                         owner={x.user.username} 
                         />
                     ))
-                ) : (
-                    <div>
-                        Empty
-                    </div>
-                )}
+                }
             </AnimatedContainer>
             <AnimatedContainer className='input-container card'>
                 <textarea></textarea>

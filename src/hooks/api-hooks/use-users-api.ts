@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { setCredentials } from "stores/auth-store";
 import { apiUrl } from "api/api-endpoints";
 
-export const useGetUsersRequest = () => {
+export const useGetUsersQuery = () => {
     const url = apiUrl(api => api.endpoints.users.get.all)
 
     return useAxiosQuery<User[]>({

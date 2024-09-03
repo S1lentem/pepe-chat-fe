@@ -1,25 +1,42 @@
-import { useMountedRefsContext } from "hooks/use-contexts";
-import { PropsWithChildren, useEffect, useRef } from "react";
+import { useActiveQueriesContext, useMountedRefsContext } from "hooks/use-contexts";
+import { PropsWithChildren, useEffect, useRef, useState } from "react";
 import { v4 as uuidv4 } from 'uuid';
+import 'styles/common.scss'
+
+const DEFAULT_DIRECTION = 'left';
+const HIDDEN_CLASS_NAME = 'hidden';
 
 interface AnimatedContainerProps extends PropsWithChildren {
-    className?: string
-    direction?: 'left' | 'right'
+    className?: string;
+    direction?: 'left' | 'right';
+    queryIds?: string[];
 }
 
-export const AnimatedContainer = (props: AnimatedContainerProps) => {   
+export const AnimatedContainer = (props: AnimatedContainerProps) => {
+    const [isReadyToAnimaton, setIsReadyToAnimation] = useState(false); 
     const ref = useRef<HTMLDivElement>(null);
     const mountedRefContext = useMountedRefsContext();
+    const activeQueriesContext = useActiveQueriesContext();
     
     useEffect(() => {
         const id = uuidv4();
-        ref.current?.classList.add(`${props.direction ?? 'left'}-bounce`);
-        mountedRefContext.push(id, ref);
 
+        if (ref.current){
+            ref.current.classList.add(HIDDEN_CLASS_NAME);
+        }
+
+        mountedRefContext.push(id, ref);
         return () => {
             mountedRefContext.remove(id);
         }
     }, [])
+
+    useEffect(() => {
+        if (ref.current && (!props.queryIds || activeQueriesContext.isCompleted(...props.queryIds))){
+            ref.current.classList.remove(HIDDEN_CLASS_NAME);
+            ref.current.classList.add(`${props.direction ?? DEFAULT_DIRECTION}-bounce`);
+        }
+    }, [activeQueriesContext.requestIds]);
 
     return (
         <div ref={ref} className={props.className}>
