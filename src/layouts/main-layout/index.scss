@@ -1,0 +1,17 @@
+.main-layout {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+}
+
+.main-layout-content {
+    height: 100%;
+    overflow: hidden;
+}
+
+
+.layout-content {
+    flex: 1;
+}
+

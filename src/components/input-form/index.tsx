@@ -6,7 +6,7 @@ interface InputFormData {
     children: React.ReactNode,
 }
 
-export const InputFrom: React.FunctionComponent<InputFormData> = (input) =>{
+export const InputFrom = (input: InputFormData) => {
     return (
         <div className='fields-container'>
             {input.children}

@@ -1,25 +1,15 @@
-import { NavLink } from 'react-router-dom'
 import './index.scss';
 import { useSelector } from 'react-redux';
 import { selectIsAuthenticated, selectAuthUser } from 'stores/auth-store';
-import { useCustomNivagate } from 'hooks/use-custom-navigate';
-import { MouseEvent } from 'react';
 import { NavigationLink } from 'components/navigation-link';
 
 export const Header = () => 
 {
-    const navigate = useCustomNivagate();
-
     const isAuthenticated = useSelector(selectIsAuthenticated);
     const user = useSelector(selectAuthUser);
 
-    const navigateTo = (location: string, e: MouseEvent<HTMLAnchorElement>) => {
-        e.preventDefault();
-        navigate(location)
-    }
-
     return (
-        <header className="header">
+        <div className='header'>
             <img src="logo192.png" alt="pepe-logo" className="logo"/>
             <div>
                 <h1 className='title'>PepeChat</h1>
@@ -47,6 +37,6 @@ export const Header = () =>
                     </li>
                 </ul>
             </nav>
-        </header>
+        </div>
     )
 }

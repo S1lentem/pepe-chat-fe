@@ -1,21 +1,44 @@
-.container {
-    width: 60%;
-    margin: 1% auto;
-    display: flex;
-}
-
 .chat-container {
-    @extend .container;
-    flex-direction: column-reverse;
     height: 100%;
-    margin: 1% auto 50% auto; 
+    padding: 1em 20%;
+    display: flex;
+    flex-direction: column;
 }
 
-.title-container {
-    @extend .container;
-}
-
-.input-container {
-    @extend .container;
+.chat-info {
+    flex-grow: 0;
+    display: flex;
     flex-direction: row;
+    align-items: center;
+    padding: 0;
+    justify-content: space-around;
+}
+
+.messages-container {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    flex: auto;
+    overflow: scroll;
+    overflow-x: hidden;
+}
+
+.chat-controls {
+    padding: 0.5em;
+    flex-grow: 0;
+    height: 7em;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    padding-right: 1em;
+    padding-bottom: 1em;
+} 
+
+.chat-controls > button {
+    width: auto;
+}
+
+.chat-controls > textarea {
+    width: 35%;
+    height: 100%;
 }

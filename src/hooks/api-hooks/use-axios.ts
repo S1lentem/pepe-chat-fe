@@ -32,6 +32,11 @@ interface ApiRequestResponse<TResponse> extends ApiResult<TResponse> {
     requestId: string;
 }
 
+const useAxios = () => {
+    const axiosClient = AXIOS_CLIENT;
+    return AXIOS_CLIENT;
+}
+
 export const useAxiosQuery = <TResponse>(data: ApiQueryData<TResponse>): ApiQueryResponse<TResponse> => {
     const [result, setResult] = useState<TResponse | undefined>();
     const context = useActiveQueriesContext();
@@ -71,13 +76,21 @@ export const useSubmit = <TRequest, TResponse>(data: ApiSubmitData<TRequest, TRe
 
     return async (request: TRequest) => {
         submitContex.setIsActiveSubmitExists(true);
-        const response = await data.method(AXIOS_CLIENT, request)
-        
-        if (data.onRequestCompleted){
-            data.onRequestCompleted(response.data);
-        }
 
-        submitContex.setIsActiveSubmitExists(false);
-        return response.data;
+        try {
+            const response = await data.method(AXIOS_CLIENT, request)
+        
+            if (data.onRequestCompleted){
+                data.onRequestCompleted(response.data);
+            }
+
+            return response.data;
+        }
+        catch (e: any) {
+            throw e;
+        }
+        finally {
+            submitContex.setIsActiveSubmitExists(false);
+        }
     };
 }

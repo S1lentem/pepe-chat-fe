@@ -1,7 +1,7 @@
 import { http, HttpResponse } from 'msw';
 import { API_URLS } from 'api/api-endpoints';
 import { AuthenticationResutl, FullUser, User } from 'types/user';
-import { Chat } from 'types/chat';
+import { Chat, CreateChatData } from 'types/chat';
 import { Message } from 'types/message';
 
 export const handlers = [
@@ -32,6 +32,48 @@ export const handlers = [
                 email: 'test1@gmail.com',
             };
             const messages: Message[] = [
+                {
+                    id: '3bbf729a-e854-41db-a691-4fd7bf7c8611',
+                    user: user,
+                    dateAdded: now,
+                    value: 'Hello man!',
+
+                },
+                {
+                    id: '3bbf729a-e854-41db-a691-4fd7bf7c8612',
+                    user: user,
+                    dateAdded: now,
+                    value: 'How are you?',
+
+                },
+                {
+                    id: '3bbf729a-e854-41db-a691-4fd7bf7c8611',
+                    user: user,
+                    dateAdded: now,
+                    value: 'Hello man!',
+
+                },
+                {
+                    id: '3bbf729a-e854-41db-a691-4fd7bf7c8612',
+                    user: user,
+                    dateAdded: now,
+                    value: 'How are you?',
+
+                },
+                {
+                    id: '3bbf729a-e854-41db-a691-4fd7bf7c8611',
+                    user: user,
+                    dateAdded: now,
+                    value: 'Hello man!',
+
+                },
+                {
+                    id: '3bbf729a-e854-41db-a691-4fd7bf7c8612',
+                    user: user,
+                    dateAdded: now,
+                    value: 'How are you?',
+
+                },
                 {
                     id: '3bbf729a-e854-41db-a691-4fd7bf7c8611',
                     user: user,
@@ -95,4 +137,15 @@ export const handlers = [
 
             return HttpResponse.json(authResult);
         }),
+
+    http.post(API_URLS.baseUrl + API_URLS.endpoints.chat.post.create,
+        () => {
+            const createResponse: CreateChatData = {
+                description: 'some description',
+                title: 'some title',
+                userId: '3bbf729a-e854-41db-a691-4fd7bf7c861d',
+            };
+            
+            return HttpResponse.json(createResponse);
+        })
 ]

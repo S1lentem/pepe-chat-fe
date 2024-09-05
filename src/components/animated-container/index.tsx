@@ -21,10 +21,6 @@ export const AnimatedContainer = (props: AnimatedContainerProps) => {
     useEffect(() => {
         const id = uuidv4();
 
-        if (ref.current){
-            ref.current.classList.add(HIDDEN_CLASS_NAME);
-        }
-
         mountedRefContext.push(id, ref);
         return () => {
             mountedRefContext.remove(id);
@@ -39,7 +35,7 @@ export const AnimatedContainer = (props: AnimatedContainerProps) => {
     }, [activeQueriesContext.requestIds]);
 
     return (
-        <div ref={ref} className={props.className}>
+        <div ref={ref} className={`${props.className} ${HIDDEN_CLASS_NAME}`}>
             {props.children}
         </div>
     );

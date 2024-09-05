@@ -1,27 +1,31 @@
+const HOST = 'https://localhost:7181';
+
+export const HUB_URL = `${HOST}/hub`;
+
 export const API_URLS = {
-    baseUrl: 'https://localhost:7181/api/',
+    baseUrl: `${HOST}/api`,
     endpoints: {
         users: {
             get: {
-                fullById: 'users/full/:id',
-                all: 'users',
+                fullById: '/users/full/:id',
+                all: '/users',
             },
             post: {
-                create: 'users',
-                signIn: 'account/sign-in',
+                create: '/users',
+                signIn: '/account/sign-in',
             },
         },
         chat: {
             get: {
-                byId: 'chats/:id',
+                byId: '/chats/:id',
             },
             post: {
-                create: 'chats/create',
+                create: '/chats/create',
             }
         },
         messages: {
             get: {
-                byChatId: 'messages/:id', 
+                byChatId: '/messages/:id', 
             },
         },
     },    

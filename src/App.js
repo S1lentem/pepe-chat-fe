@@ -1,6 +1,4 @@
 import './App.css';
-import { Header } from 'components/header';
-import { Footer } from 'components/footer';
 import { BrowserRouter } from 'react-router-dom';
 import { Routers } from 'route/route';
 import { ActiveQueries } from 'context/contex-wrappers/active-queries';
@@ -8,24 +6,21 @@ import { ActiveSubmites } from 'context/contex-wrappers/active-submits';
 import { MountedRefs } from 'context/contex-wrappers/mounted-refs';
 
 import 'styles/animations.scss';
+import { MainLayout } from 'layouts/main-layout';
 
 function App() {
   return (
-    <div className="App">
       <MountedRefs>
           <ActiveSubmites>
             <ActiveQueries>
               <BrowserRouter>
-                <Header />
-                <div className='content'>
+                <MainLayout>
                   <Routers />
-                </div>
-                <Footer />
+                </MainLayout>
               </BrowserRouter>
             </ActiveQueries>
           </ActiveSubmites>
       </MountedRefs>
-    </div>
   );
 }
 export default App;

@@ -1,12 +1,10 @@
 .footer {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    text-align: center;
+    display: flex;
     width: 100%;
-    height: 70px;
+    height: 5%;
+    flex-shrink: 0;
 
     color: rgba(80, 136, 23);
-    background-color: rgba(0, 0, 0, 0.9);
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    background-color: rgb(41, 39, 39);
+    box-shadow: 4px 0 0 8px rgba(41, 39, 39, 0.7);
 }

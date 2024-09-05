@@ -31,6 +31,9 @@
 .chat-list {
     padding: 1em;
     margin: 0;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
 }
 
 .chat-list-item {

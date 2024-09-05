@@ -9,6 +9,10 @@
     padding: 0.5em;
 }
 
+.message-container::-webkit-scrollbar {
+    display: none;
+}
+
 .message-date {
     font-size: small;
 }

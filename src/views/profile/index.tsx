@@ -4,6 +4,7 @@ import { Chat } from "types/chat";
 import { useCustomNivagate } from "hooks/use-custom-navigate";
 import { useGetFullUserQuery } from "hooks/api-hooks/use-users-api";
 import { AnimatedContainer } from "components/animated-container";
+import { PersonalInfo } from "components/users/personal-info";
 
 const renderChats = (chats: Chat[], navigate: (to: string) => void) => {
     if (chats.length === 0){
@@ -38,12 +39,7 @@ export const ProfileView = () => {
                         className='personal-info'
                         queryIds={[queryId]} 
                     >
-                        <h2>Username: </h2>
-                        <p>{user.username}</p>
-                        <hr />
-                        <h2>Email: </h2>
-                        <p>{user.email}</p>
-                        <hr />
+                        <PersonalInfo user={user} />
                     </AnimatedContainer>
                     <AnimatedContainer 
                         className="chats-info" 

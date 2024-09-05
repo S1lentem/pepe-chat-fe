@@ -8,6 +8,7 @@
 
 #root {
   height: 100%;
+  overflow: hidden;
 }
 
 .content {
@@ -17,3 +18,7 @@
   margin-bottom: 70px;
 }
 
+
+body {
+  height: 100%;
+}
